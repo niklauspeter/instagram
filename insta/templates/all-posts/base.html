@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='urf-8'>
+
+    {% if title %}
+    <title> Instagram clone -{{title}}</title>
+    {% else %}
+    <title> Instagram Clone </title>
+    {% end if %}
+
+</head>
+<body>
+    {% block content %} <h1>News for {{date|date:"l d-F Y"}}</h1>
+    {%endblock%}
+</body>
+</html>
