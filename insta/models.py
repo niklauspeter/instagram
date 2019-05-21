@@ -24,4 +24,8 @@ class Image(models.Model):
     def display_images(cls):
         image = cls.objects.all()
         return image
+    @classmethod
+    def search_by_name(cls,search_term):
+        image = cls.objects.filter(image_name__icontains=search_term)
+        return image
 
