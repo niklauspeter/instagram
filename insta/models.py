@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Profile(models.Model):
@@ -9,7 +10,7 @@ class Image(models.Model):
     image = models.ImageField(upload_to = 'images/')
     image_name= models.CharField(max_length= 30)
     image_caption= models.CharField(max_length= 30)
-    # profile = models.ForeignKey(Profile)
+    user = models.ForeignKey(User, related_name="posted_by", on_delete=models.CASCADE, null=True)
     # likes =
     # comments
     pub_date = models.DateTimeField(auto_now_add=True)
