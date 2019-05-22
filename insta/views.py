@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse
 from .models import Image
+from django.contrib.auth.decorators import login_required 
 
+@login_required(login_url='/accounts/login/')
 def welcome(request):
     image = Image.display_images()
     return render(request, 'all-posts/index.html', {"image":image})
