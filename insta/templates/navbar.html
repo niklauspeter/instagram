@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -41,6 +41,9 @@
             <li>
               <a href="/logout">Logout</a>
             </li>
+            <li>
+              <a href="{% url 'profile' %}">Profile</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -53,5 +56,35 @@
     </div>
   </div>
 </nav>
+</body>
+</html> -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block styles %}
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    {% endblock %}
+</head>
+<body>
+<style>
+</style>
+
+    <header>
+        <a href="{% url 'welcome' %}"><i class="fa fa-home"></i></a>
+        <a href="{% url 'new_image' %}"><i class="fa fa-search"></i></a>
+        <a href="{% url 'profile' %}"><i class="fa fa-cloud-upload"></i></a>
+        <a href="/logout">logout<i class="fa fa-user-o"></i></a>
+    </header>
+
 </body>
 </html>
