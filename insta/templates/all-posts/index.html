@@ -1,20 +1,95 @@
 {%extends 'all-posts/base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+{% load staticfiles %}
+
 {% block content%}
-<html>
-<h1>welcome to index bitch !</h1>
-{% for image_item in image %}
+{{block.super}}
+<head>
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    {% endblock%}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/profile.css">
+  <link rel="stylesheet" href="../static/css/index.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+</head>
+<div class="container">
 
-  <div class="row">
-    <!-- displaying News articles -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <h2 class="text-center"> {{ image_item.title }} </h2>
+    <div class="row">
+    {% for image_item in image %}
+    <div class="col-md-12 col-lg-12">
+    <div class="gallery-item">
+    
+    <div class="card" style="width: 70rem;">
+      <div class="custom-card-header">
+      <div class="modal-image">
+        <p><img src="{{image_item.image.url}}?w=50&h=50&fit=crop" class="gallery-image" alt=""  width=8 height=8>{{image_item.user.username}}</p>
+      </div>
+    
+         
+          <footer class="location">{{image_item.location}}</footer>
+      </div>
+    <br><br>
+          <img src="{{image_item.image.url}}?w=800&h=1000&fit=crop" class="gallery-img">
+      <div class="card-body">
+        <div class="card-footer-section">
+    
+        <br>
+        <p class="card-text username"><strong>{{image_item.user.username}}</strong> <span class="caption"> {{image_item.image_caption | safe}}</span></p>
+        <br>
+        <div id="card{{image_item.id}}" class="mt-2">
+               
+        </div>
+    
+      </div>
+      </div>
+      
+    
+    
+      <div class="modal-footer">
+    
+      <div class="text-center">
+        
+        <form method="post" enctype="multipart/form-data" id='comment{{image_item.id}}' class="commentformsize">
+          {% csrf_token %}
+        <div class='comment-section'>
+
+          <input type='text' id='cmnt' placeholder='Add a comment...'>
+        <span class='dot02'></span>
+      </div>
+         
+        </form>
+      </div>
     </div>
-
-    <!--Display news Article images  -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <img src="{{image_item.image.url}}" class="img-responsive" alt="Image">
+    
     </div>
-
-  </div>
-  {% endfor %}
-{% endblock%}
+    </div>
+    </div>
+    
+    {% endfor %}
+    
+    <div class="col-md-2">
+    <div class="panel" style="width: 30rem;">
+      <!-- <div class="custom-card-header"> -->
+      <div class="panel-body">
+        {% for prof in profile%}
+        <!-- <div class="custom-card-header"> -->
+    
+        <div class="users-image">
+          <img src="{{profile.profile_pic.url}}?w=50&h=50&fit=crop" class="gallery-image" alt=""  width=8 height=8>
+          <p  class="profile-username">  <a href="/profile/{{profile.id}}">{{prof.username}}</a></p>
+    
+        </div>
+        <!-- </div> -->
+    
+    
+    
+        {% endfor %}
+    
+      </div>
+    </div>
+    
+    </div>
+    {% endblock %}

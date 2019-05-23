@@ -3,6 +3,9 @@ from django.http  import HttpResponse
 from .models import Image, Profile
 from django.contrib.auth.decorators import login_required 
 from .forms import NewImageForm, SignupForm, ProfileForm
+import datetime as dt
+from django.http import HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 
 @login_required(login_url='/accounts/login/')
 def welcome(request):
@@ -47,6 +50,7 @@ def edit_profile(request):
             profile=form.save(commit=False)
             profile.username = current_user
             profile.save()
+        return redirect('profile')
 
     else:
         form=ProfileForm()
@@ -55,44 +59,19 @@ def edit_profile(request):
 
 
 
+
 @login_required(login_url='/accounts/login/')
 def profile(request):
-    # current_user = request.user
-    # current_user_id=request.user.id
+    current_user = request.user
+    current_user_id=request.user.id
 
-    # form=CommentForm()
-    # comments=Comment.objects.all()
-    # comment_number=len(comments)
-    # print(current_user)
-    # # print(current_user_id)
+    profile= Profile.objects.filter(username=current_user)
+    images=Image.objects.filter(id=current_user_id)
 
-    # post_id = None
-    # if request.method == 'GET':
-    #     post_id = request.GET.get('post_id')
+    # profile= Profile.objects.filter(id=profile_id)
+    # images=Image.objects.filter(user=request.user)
+    return render(request,"all-posts/profile.html",{"profile":profile,"images":images})
 
-    # likes = 0
-    # if post_id:
-    #     post = Post.objects.get(id=int(post_id))
-    #     if post:
-    #         likes = post.likes + 1
-    #         post.likes =  likes
-    #         post.save()
-    #         print(likes)
+def look(request):
 
-    #     return redirect('profile.html')
-
-    # try:
-        # profile = Profile.objects.get(username=current_user)
-        # image = Image.objects.filter(username_id=current_user_id)
-        # title = profile.name
-        # username = profile.username
-        # image_number= len(image)
-        # print(post_number)
-
-    # except ObjectDoesNotExist:
-    #     return redirect('edit-profile')
-
-
-    return render(request,'all-posts/profile.html')
-    
-    # {"profile":profile,"image":image,"form":form,"image_number":image_number,"title":title,"username":username,"comments":comments,"comment_number":comment_number})
+    return render(request,'all-posts/search_icon.html')
