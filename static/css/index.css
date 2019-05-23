@@ -12,11 +12,7 @@
     cursor: pointer;
     
 }
-.card{
-    margin-top: 50px;
-    align-self: center;
-    margin-left: 170px;
-}
+   
 .card-footer-section{
   margin-left: 1rem;
 }
@@ -82,33 +78,4 @@ a:active {
     border-radius: 100px;
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
-  }
-  @media only screen and (max-width: 845px) {
-    .footer-cont {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-    }
-    .footer-cont ul {
-        display: -webkit-box;
-        margin-top: 50px;
-        align-self: center;
-        margin-left: 170px;  display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -ms-flex-flow: wrap;
-        flex-flow: wrap;
-    }
-    .footer-cont ul li {
-        margin-bottom: 8px;
-    }
   }
