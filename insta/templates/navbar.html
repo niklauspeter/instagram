@@ -69,17 +69,17 @@
 
     {% block styles %}
         <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-
+        <link href="https://fonts.googleapis.com/css?family=Cookie&display=swap" rel="stylesheet">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
     {% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse" style="background-color: rgb(173, 143, 177)">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'welcome' %}">Instagram</a>
+            <a class="navbar-brand" style="font-family: 'Cookie', cursive; font-size: 30px; color: aliceblue" href="{% url 'welcome' %}">Instagram</a>
           </div>
           <div class="col-sm-4 col-md-4 navbar-right">
       
@@ -98,7 +98,7 @@
             {% if user.is_authenticated %}
             <ul>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false ">Account
+                <a href="#" class="dropdown-toggle btn btn-default" style="color: aliceblue" data-toggle="dropdown" role="button" aria-expanded="false ">Account
                           <span class="caret"></span>
                       </a>
                 <ul class="dropdown-menu" role="menu">
